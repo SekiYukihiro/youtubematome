@@ -34,6 +34,8 @@
 
                 {!! Form::submit('新規登録', ['class' => 'btn btn-primary']) !!}
             {!! Form::close() !!}
+
+            <p class="mt-2">{!! link_to_route('login','登録済みの方はコチラ') !!}</p>
         </div>
     </div>
 
