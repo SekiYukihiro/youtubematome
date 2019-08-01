@@ -15,5 +15,6 @@
         <h1>{{ $user->channel_name }}</h1>
         <div class="col-sm-8">
             @include('users.navtabs',['user'=>$user])
+            @include('users.users',['users'=>$users])
         </div>
 @endsection

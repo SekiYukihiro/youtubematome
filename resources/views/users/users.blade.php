@@ -7,6 +7,9 @@
                     <div>
                         {!! link_to_route('users.show', $user->name, ['id' => $user->id]) !!}
                     </div>
+                     @if(Auth::check())
+                        @include('user_follow.follow_button',['user'=>$user])
+                    @endif
                 </div>
             </li>
         @endforeach
