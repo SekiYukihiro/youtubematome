@@ -9,12 +9,11 @@
                     </div>
                 </div>
         </li>
-            @if(Auth::check())
-                @include('user_follow.follow_button',['user'=>$user])
-            @endif
+
         <h1>{{ $user->channel_name }}</h1>
         <div class="col-sm-8">
             @include('users.navtabs',['user'=>$user])
-            @include('users.users',['users'=>$users])
+
+            @include('movies.movies', ['users'=>$users,'movies' => $movies])
         </div>
 @endsection

@@ -11,7 +11,8 @@
             <ul class="navbar-nav">
                 @if(Auth::check())
                     <li>{!! link_to_route('logout.get','ログアウト',[],['class'=>'nav-link']) !!}</li>
-                    <li class="nav-link"><a>オススメ動画登録する</a></li>
+                    <li>{!! link_to_route('recommend','オススメ動画登録する',['id'=>Auth::id()],['class'=>'nav-link']) !!}</li>
+                    <li>{!! link_to_route('channel','チャンネル設定',['id'=>Auth::id()],['class'=>'nav-link']) !!}</li>
                 @else
                     <li>{!! link_to_route('login','ログイン',[],['class'=>'nav-link']) !!}</li>
                     <li>{!! link_to_route('signup.get','新規ユーザ登録',[],['class'=>'nav-link']) !!}</li>

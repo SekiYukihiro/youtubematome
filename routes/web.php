@@ -17,7 +17,11 @@
 
 // Route::resource('/', 'UsersController', ['only' => ['index', 'show']]);
 
-Route::get('/', 'UsersController@index');
+// Route::get('/', 'UsersController@index');
+Route::get('/', 'MoviesController@index');
+
+Route::get('upload','UploadController@index');
+Route::post('upload','UploadController@store');
 
 Route::get('signup','Auth\RegisterController@showRegistrationForm')->name('signup.get');
 Route::post('signup','Auth\RegisterController@register')->name('signup.post');
@@ -37,7 +41,29 @@ Route::group(['middleware'=>'auth'],function(){
     Route::group(['prefix'=>'users/{id}'],function(){
        Route::post('follow','UserFollowController@store')->name('user.follow');
        Route::delete('unfollow','UserFollowController@destroy')->name('user.unfollow');
+    // Route::group(['prefix'=>'recommend'],function(){
+            // Route::resource('movies','MoviesController',['only'=>['store','destroy']]);
+    //   });
     });
+});
+
+Route::get('recommend/{id}','MoviesController@recommend')->name('recommend');
+Route::group(['prefix'=>'recommend'],function(){
+    // Route::get('movies/{m_id}','MoviesController@recommend')->name('recommend');
+    Route::get('movies/{m_id}','MoviesController@select')->name('movies.select');
+    Route::post('movies/{m_id}','MoviesController@deleteData')->name('movies.delete');
+    Route::post('movies','MoviesController@store')->name('movies.store');
+});
+
+Route::group(['middleware'=>'auth'],function(){
+    Route::get('channel/{id}','UsersController@channel')->name('channel');
+    Route::put('rename','UsersController@rename')->name('rename');
+    Route::put('profile','UsersController@profile')->name('profile');
+    Route::delete('deleteData','UsersController@deleteData')->name('users.delete');
+});
+
+Route::group(['prefix'=>'recommend'],function(){
+    Route::post('word','UsersController@wordStore')->name('word.store');
 });
 
 // Route::group(['middleware' => ['auth']], function () {

@@ -4,10 +4,15 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Authenticatable
 {
     use Notifiable;
+    use SoftDeletes;
+
+    protected $table = 'users';
+    protected $dates = ['deleted_at'];
 
     /**
      * The attributes that are mass assignable.
@@ -26,6 +31,23 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function movies()
+    {
+        return $this->hasMany(Movie::class);
+    }
+
+    public function feed_followings_movies()
+    {
+        $followings_user_ids = $this->followings()->pluck('users.id')->toArray();
+        return Movie::whereIn('user_id',$followings_user_ids);
+    }
+
+    public function feed_followers_movies()
+    {
+        $followers_user_ids = $this->followers()->pluck('users.id')->toArray();
+        return Movie::whereIn('user_id',$followers_user_ids);
+    }
 
     public function followings()
     {
