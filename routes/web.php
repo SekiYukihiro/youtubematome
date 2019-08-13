@@ -60,6 +60,8 @@ Route::group(['middleware'=>'auth'],function(){
     Route::put('rename','UsersController@rename')->name('rename');
     Route::put('profile','UsersController@profile')->name('profile');
     Route::delete('deleteData','UsersController@deleteData')->name('users.delete');
+
+    Route::post('storeIcon','PhotosController@storeIcon')->name('icon.store');
 });
 
 Route::group(['prefix'=>'recommend'],function(){

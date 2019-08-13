@@ -39,6 +39,17 @@
                         {!! Form::submit('更新する？',['class'=>'btn btn-primary btn-lg d-block ml-3']) !!}
         {!! Form::close() !!}
 
+        <figure class="mt-5">
+                <img class="rounded img-fluid" src="{{ Storage::url(Auth::user()->icon_image_url) }}" width="100px" height="100px">
+                <figcaption>現在のプロフィール画像</figcaption>
+        </figure>
+
+        <form method="POST" action="/storeIcon" enctype="multipart/form-data">
+                {{ csrf_field() }}
+                <input type="file" name="photo" class="btn btn-lg">
+                <input type="submit" class="btn btn-primary btn-lg d-block ml-3">
+        </form>
+
         <h2 class="mt-5">詳細プロフィール</h2>
 
         {!! Form::model($user,['route'=>['profile',$user->id],'method'=>'put']) !!}

@@ -3,8 +3,8 @@
     @foreach ($movies as $movie)
 
             <li class="media mb-3">
-                 @if($user->icon_image_url)
-                    <img class="rounded img-fluid" src="{{ Storage::url($movie->user->image_url) }}" width="50px" height="50px">
+                 @if($movie->user->icon_image_url)
+                    <img class="rounded img-fluid" src="{{ Storage::url($movie->user->icon_image_url) }}" width="50px" height="50px">
                  @else
                     <img class="rounded img-fluid" src="{{ Gravatar::src($movie->user->email,50) }}" alt="">
                  @endif
