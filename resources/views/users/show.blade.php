@@ -2,7 +2,11 @@
 
 @section('content')
         <li class="media">
-            <img class="mr-2 rounded" src="{{ Gravatar::src($user->email, 50) }}" alt="">
+            @if($user->icon_image_url)
+                <img class="rounded img-fluid" src="{{ Storage::url($user->icon_image_url) }}" width="50px" height="50px">
+            @else
+                <img class="mr-2 rounded" src="{{ Gravatar::src($user->email, 50) }}" alt="">
+            @endif
                 <div class="media-body">
                     <div>
                         {{ $user->name }}
@@ -16,7 +20,7 @@
         <div class="col-sm-8">
             @include('users.navtabs',['user'=>$user])
 
-            @include('movies.movies', ['user'=>$user,'movies' => $movies])
+            @include('movies.movies_all', ['user'=>$user,'movies' => $movies])
         </div>
 
         <h2>お気に入りワード：{{ $favorite_word }}</h2>

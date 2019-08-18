@@ -20,8 +20,10 @@
 // Route::get('/', 'UsersController@index');
 Route::get('/', 'MoviesController@index');
 
-Route::get('upload','UploadController@index');
-Route::post('upload','UploadController@store');
+Route::group(['middleware'=>'auth'],function(){
+    Route::get('upload','UploadController@index')->name('upload.get');
+    Route::post('upload','UploadController@store')->name('upload.post');
+});
 
 Route::get('signup','Auth\RegisterController@showRegistrationForm')->name('signup.get');
 Route::post('signup','Auth\RegisterController@register')->name('signup.post');
@@ -62,6 +64,8 @@ Route::group(['middleware'=>'auth'],function(){
     Route::delete('deleteData','UsersController@deleteData')->name('users.delete');
 
     Route::post('storeIcon','PhotosController@storeIcon')->name('icon.store');
+    Route::post('storeTop','PhotosController@storeTop')->name('top.store');
+    Route::post('topTrimming','PhotosController@topTrimming')->name('topTorimming');
 });
 
 Route::group(['prefix'=>'recommend'],function(){

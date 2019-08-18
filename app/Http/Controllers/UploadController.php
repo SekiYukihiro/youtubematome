@@ -17,7 +17,10 @@ class UploadController extends Controller
      */
     public function index()
     {
-        return view('upload');
+        $user=\Auth::user();
+        $movies = $user->movies()->where('upload_id',1)->orderBy('created_at', 'desc')->paginate(10);
+
+        return view('upload',['user'=>$user,'movies'=>$movies,]);
     }
 
     /**
@@ -38,27 +41,24 @@ class UploadController extends Controller
      */
     public function store(Request $request)
     {
+
         $upload_movie = Youtube::upload($request->file('video')->getPathName(),[
-            'title' => 'My Video',
-            'description' => 'This video is uploaded through API.',
-            'tags' => ['api','youtube'],
+            'title' => $request->title,
+            'description' => $request->description,
+            // 'tags' => ['api','youtube'],
         ]);
 
         $user = \Auth::user();
         $movie = new Movie;
         $movie->user_id = \Auth::user()->id;
         $movie->url = $upload_movie->videoId;
+        $movie->upload_id = "1";
 
         $movie->save();
 
+        $movies = $user->movies()->where('upload_id',1)->orderBy('created_at', 'desc')->paginate(10);
 
-        $users = User::orderBy('id','desc')->paginate(10);
-        $movies = Movie::orderBy('id','desc')->paginate(10);
-
-        return view('welcome',[
-               'users'=>$users,
-               'movies'=>$movies,
-        ]);
+        return view('upload',['user'=>$user,'movies'=>$movies,]);
 
         // return $upload_movie->getVideoId();
     }

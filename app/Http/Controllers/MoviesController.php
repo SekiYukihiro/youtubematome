@@ -14,12 +14,11 @@ class MoviesController extends Controller
         $data = [];
 
         // $movies = User::feed_movies()->orderBy('created_at', 'desc')->paginate(1);
-        $movies = Movie::orderBy('created_at', 'desc')->paginate(10);
+
 
         $users = User::orderBy('id','desc')->paginate(10);
 
         $data = [
-                'movies' => $movies,
                 'users'=>$users,
         ];
 

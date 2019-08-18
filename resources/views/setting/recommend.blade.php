@@ -25,4 +25,8 @@
         <h2>動画をオススメから削除</h2>
         @include('movies.movies_select', ['user'=>$user,'movies' => $movies])
 
+        <a href="{{ route('channel',['id'=>Auth::id()])}}"><h2 class="mt-5">お気に入りワードを設定</h2></a>
+
+        <a href="{{ route('upload.get')}}"><h2 class="mt-5">自分の動画を投稿する</h2></a>
+
 @endsection

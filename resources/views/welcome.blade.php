@@ -11,5 +11,5 @@
         {{ Auth::user()->name }}
     @else
     @endif
-    @include('movies.movies', ['users'=>$users,'movies' => $movies])
+    @include('movies.movies', ['users'=>$users])
 @endsection

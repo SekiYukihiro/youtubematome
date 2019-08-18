@@ -115,9 +115,11 @@ class UsersController extends Controller
     public function channel($id)
     {
         $user=\Auth::user();
+        $num="";
 
         return view('setting.channel',[
                'user'=>$user,
+               'num'=>$num,
         ]);
     }
 

@@ -39,16 +39,82 @@
                         {!! Form::submit('更新する？',['class'=>'btn btn-primary btn-lg d-block ml-3']) !!}
         {!! Form::close() !!}
 
+
         <figure class="mt-5">
                 <img class="rounded img-fluid" src="{{ Storage::url(Auth::user()->icon_image_url) }}" width="100px" height="100px">
-                <figcaption>現在のプロフィール画像</figcaption>
+                <figcaption>現在のアイコン画像</figcaption>
         </figure>
 
         <form method="POST" action="/storeIcon" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <input type="file" name="photo" class="btn btn-lg">
-                <input type="submit" class="btn btn-primary btn-lg d-block ml-3">
+                <input type="submit" value="更新する？" class="btn btn-primary btn-lg d-block ml-3">
         </form>
+
+<script type="text/javascript">
+
+$(function() {
+
+  $("#change_btn").click(function() {
+    var getObject = $("#change_object").val();
+
+    $("#change").css("object-position","0% "+ getObject +"%");
+
+    var getObject = { request : $("#change_object").val() };
+
+    $.ajax({
+            type:'POST',
+            url:"",
+            data:getObject,
+            success: function(data,dataType){
+                    alert(getObject);
+                    console.log(getObject);
+            }
+    });
+  });
+
+});
+
+</script>
+
+        <figure class="mt-5">
+                <img id="change" class="rounded img-fluid" src="{{ Storage::url(Auth::user()->top_image_url) }}" width="1000px" height="200px" style="width:100%; height:200px; object-fit:cover; object-position:0% 100%;">
+                <figcaption>現在のチャンネルトップ画像</figcaption>
+
+                        {{ csrf_field() }}
+                        <input type="text" id="change_object" value="100">
+                        <input type="submit" id="change_btn" value="変更する？">
+                        <!--<input type="hidden" name="hidden_input" value="">-->
+                </form>
+        </figure>
+
+
+        <h3><i class="fa fa-crop"></i> cropperのデモ </h3>
+<!-- 切り抜きボタン -->
+<form method="POST" action="/topTrimming" enctype="multipart/form-data">
+        {{ csrf_field() }}
+        <input type="submit" id="getData" value="Get Data？" class="btn btn-primary">
+</form>
+<br><br>
+<div class="cropper-example-1">
+  <!-- bladeテンプレートを使用していれば asset()や url() 関数が使えます -->
+  <img id="img" class="img-responsive" src="{{ Storage::url(Auth::user()->top_image_url) }}" alt="">
+</div>
+
+
+
+
+        <figure class="mt-5">
+                <img class="rounded img-fluid" src="{{ Storage::url(Auth::user()->top_image_url) }}" width="1000px" height="200px">
+                <figcaption>現在のチャンネルトップ画像</figcaption>
+        </figure>
+
+        <form method="POST" action="/storeTop" enctype="multipart/form-data">
+                {{ csrf_field() }}
+                <input type="file" name="photo" class="btn btn-lg">
+                <input type="submit" value="更新する？" class="btn btn-primary btn-lg d-block ml-3">
+        </form>
+
 
         <h2 class="mt-5">詳細プロフィール</h2>
 
@@ -75,6 +141,45 @@
         {!! Form::model($user,['route'=>['users.delete',$user->id],'method'=>'delete']) !!}
                 {!! Form::submit('退会する？',['class'=>'btn btn-danger btn-lg d-block ml-3']) !!}
         {!! Form::close() !!}
+
+
+<script type="text/javascript">
+
+// init
+// class='cropper-example-1のimgタグに適用'
+var $image = $('.cropper-example-1 > img'),replaced;
+
+//crop options
+// id='imgに適用'
+$('#img').cropper({
+  aspectRatio: 16 / 9 // ここでアスペクト比の調整 ワイド画面にしたい場合は 16 / 9
+
+  });
+
+$('#getData').on('click', function(){
+
+   // crop のデータを取得
+   var data = $('#img').cropper('getData');
+
+   // 切り抜きした画像のデータ
+   // このデータを元にして画像の切り抜きが行われます
+   var image = {
+     width: Math.round(data.width),
+     height: Math.round(data.height),
+     x: Math.round(data.x),
+     y: Math.round(data.y),
+     _token: 'jf89ajtr234534829057835wjLA-SF_d8Z' // csrf用
+    };
+
+   // post 処理
+   $.post('/topTrimming', image, function(res){
+     // 成功すれば trueと表示されます
+     console.log(res);
+   });
+
+});
+
+</script>
 
 
 @endsection
