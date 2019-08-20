@@ -1,6 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
+        @if($user->top_image_url)
+            <img id="change" class="rounded img-fluid" src="{{ Storage::url($user->top_image_url) }}" width="1000px" height="200px" style="width:100%; height:200px; object-fit:cover; object-position:0% {{ $user->top_trim }}%;">
+        @endif
         <li class="media">
             @if($user->icon_image_url)
                 <img class="rounded img-fluid" src="{{ Storage::url($user->icon_image_url) }}" width="50px" height="50px">

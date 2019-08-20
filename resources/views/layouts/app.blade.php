@@ -34,4 +34,7 @@
         <script defer src="https://use.fontawesome.com/releases/v5.7.2/js/all.js"></script>
 
     </body>
+
+        @include('commons.footer')
+
 </html>

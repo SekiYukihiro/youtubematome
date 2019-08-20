@@ -32,6 +32,8 @@ Route::get('login','Auth\LoginController@showLoginForm')->name('login');
 Route::post('login','Auth\LoginController@login')->name('login.post');
 Route::get('logout','Auth\LoginController@logout')->name('logout.get');
 
+Route::get('privacy','UsersController@privacy')->name('privacy');
+
 Route::get('users/{id}', 'UsersController@show')->name('users.show');
 
 Route::group(['prefix'=>'users/{id}'],function(){
@@ -66,6 +68,7 @@ Route::group(['middleware'=>'auth'],function(){
     Route::post('storeIcon','PhotosController@storeIcon')->name('icon.store');
     Route::post('storeTop','PhotosController@storeTop')->name('top.store');
     Route::post('topTrimming','PhotosController@topTrimming')->name('topTorimming');
+    Route::post('topTrim','PhotosController@topTrim')->name('topTrim');
 });
 
 Route::group(['prefix'=>'recommend'],function(){

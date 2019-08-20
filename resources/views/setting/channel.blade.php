@@ -51,42 +51,22 @@
                 <input type="submit" value="更新する？" class="btn btn-primary btn-lg d-block ml-3">
         </form>
 
-<script type="text/javascript">
 
-$(function() {
+        <h2 class="mt-5">トップ画像を編集</h2>
 
-  $("#change_btn").click(function() {
-    var getObject = $("#change_object").val();
-
-    $("#change").css("object-position","0% "+ getObject +"%");
-
-    var getObject = { request : $("#change_object").val() };
-
-    $.ajax({
-            type:'POST',
-            url:"",
-            data:getObject,
-            success: function(data,dataType){
-                    alert(getObject);
-                    console.log(getObject);
-            }
-    });
-  });
-
-});
-
-</script>
+        {!! Form::model($user,['route'=>['topTrim'],'method'=>'post']) !!}
+                <div class="form-group">
+                        {!! Form::label('top_trim','切り取る位置（高さ）を入力　（例）０→写真の一番上を切り取る　100→写真の一番下を切り取る') !!}
+                        {!! Form::text('top_trim',old('top_trim'),['class'=>'form-control','id'=>'top_trim']) !!}
+                </div>
+                        {!! Form::submit('更新する？',['class'=>'btn btn-primary btn-lg d-block ml-3','id'=>'top_trim_btn']) !!}
+        {!! Form::close() !!}
 
         <figure class="mt-5">
-                <img id="change" class="rounded img-fluid" src="{{ Storage::url(Auth::user()->top_image_url) }}" width="1000px" height="200px" style="width:100%; height:200px; object-fit:cover; object-position:0% 100%;">
+                <img id="change" class="rounded img-fluid" src="{{ Storage::url(Auth::user()->top_image_url) }}" width="1000px" height="200px" style="width:100%; height:200px; object-fit:cover; object-position:0% {{ $user->top_trim }}%;">
                 <figcaption>現在のチャンネルトップ画像</figcaption>
 
-                        {{ csrf_field() }}
-                        <input type="text" id="change_object" value="100">
-                        <input type="submit" id="change_btn" value="変更する？">
-                        <!--<input type="hidden" name="hidden_input" value="">-->
-                </form>
-        </figure>
+
 
 
         <h3><i class="fa fa-crop"></i> cropperのデモ </h3>
@@ -170,7 +150,6 @@ $('#getData').on('click', function(){
      y: Math.round(data.y),
      _token: 'jf89ajtr234534829057835wjLA-SF_d8Z' // csrf用
     };
-
    // post 処理
    $.post('/topTrimming', image, function(res){
      // 成功すれば trueと表示されます

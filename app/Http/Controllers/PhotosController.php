@@ -75,9 +75,28 @@ class PhotosController extends Controller
 
     // use Intervention\Image\ImageManagerStatic as Image;
 
+    public function topTrim(Request $request)
+    {
+
+        $this->validate($request,[
+                'top_trim' => 'required|max:10|between:0,100',
+        ]);
+
+        $user=\Auth::user();
+        $user->top_trim = $request->top_trim;
+        $user->save();
+
+        $num="";
+
+        return view('setting.channel',[
+               'user'=>$user,
+               'num'=>$num,
+        ]);
+    }
+
     public function topTrimming(Request $request)
     {
-        // dd($request);
+
         $crop =  value(function() use ($request) {
 
               // Laravelの場合は public_path()ヘルパー関数、Facadeが使えます

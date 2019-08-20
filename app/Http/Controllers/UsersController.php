@@ -21,6 +21,11 @@ class UsersController extends Controller
         ]);
     }
 
+     public function privacy()
+    {
+        return view('auth.privacy_policy');
+    }
+
     public function show($id)
     {
         $user = User::find($id);
