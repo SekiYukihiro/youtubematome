@@ -2,21 +2,27 @@
 
 @section('content')
         @if($user->top_image_url)
-            <img id="change" class="rounded img-fluid" src="{{ Storage::url($user->top_image_url) }}" width="1000px" height="200px" style="width:100%; height:200px; object-fit:cover; object-position:0% {{ $user->top_trim }}%;">
+            <div class="mb-4">
+                <img id="change" class="rounded img-fluid" src="{{ Storage::url($user->top_image_url) }}" style="width:1200px; height:200px; object-fit:cover; object-position:0% {{ $user->top_trim }}%;">
+            </div>
         @endif
-        <li class="media">
-            <img class="mr-2 rounded" src="{{ Gravatar::src($user->email, 50) }}" alt="">
-                <div class="media-body">
-                    <div>
+            <div class="text-right">
+            @if($user->icon_image_url)
+                <img class="rounded img-fluid" src="{{ Storage::url($user->icon_image_url) }}" width="80px" height="80px">
+            @else
+                <img class="mr-2 rounded" src="{{ Gravatar::src($user->email, 80) }}" alt="">
+            @endif
                         {{ $user->name }}
-                    </div>
-                </div>
-        </li>
+            </div>
+
+            @if(Auth::check())
+                @include('user_follow.follow_button',['user'=>$user])
+            @endif
 
         <h1>{{ $user->channel_name }}</h1>
-        <div class="col-sm-8">
+
             @include('users.navtabs',['user'=>$user])
 
             @include('movies.movies', ['users'=>$users,'movies' => $movies])
-        </div>
+
 @endsection

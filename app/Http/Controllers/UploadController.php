@@ -41,6 +41,11 @@ class UploadController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request,[
+                    'video' => 'required|file|max:100000|mimes:mp4,qt,x-ms-wmv,mpeg,x-msvideo',
+                    'title' => 'required|max:24',
+                    'description' => 'required|max:191',
+            ]);
 
         $upload_movie = Youtube::upload($request->file('video')->getPathName(),[
             'title' => $request->title,

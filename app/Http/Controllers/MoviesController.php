@@ -13,10 +13,7 @@ class MoviesController extends Controller
     {
         $data = [];
 
-        // $movies = User::feed_movies()->orderBy('created_at', 'desc')->paginate(1);
-
-
-        $users = User::orderBy('id','desc')->paginate(10);
+        $users = User::orderBy('id','desc')->paginate(9);
 
         $data = [
                 'users'=>$users,
@@ -29,7 +26,7 @@ class MoviesController extends Controller
     {
 
             $this->validate($request,[
-                    'url' => 'required|max:191',
+                    'url' => 'required|max:11',
             ]);
 
             $request->user()->movies()->create([
@@ -41,16 +38,10 @@ class MoviesController extends Controller
 
     public function deleteData($m_id)
     {
-        // $target_movie = Movie::find($request->id);
-
-        // dd($request->id);
-        // $target_movie->delete();
-
-        // return back();
         $data = [];
 
         $user = \Auth::user();
-        $movies = $user->movies()->orderBy('created_at', 'desc')->paginate(10);
+        $movies = $user->movies()->orderBy('created_at', 'desc')->paginate(9);
 
         $target_movie = Movie::find($m_id);
 
@@ -81,9 +72,7 @@ class MoviesController extends Controller
         $data = [];
 
         $user = \Auth::user();
-        $movies = $user->movies()->orderBy('created_at', 'desc')->paginate(10);
-
-        // $target_id = $request->input('m_id') ? $request->input('m_id') : null;
+        $movies = $user->movies()->orderBy('created_at', 'desc')->paginate(9);
 
         $target_movie = "";
         $target_id = "";
@@ -107,9 +96,7 @@ class MoviesController extends Controller
         $data = [];
 
         $user = \Auth::user();
-        $movies = $user->movies()->orderBy('created_at', 'desc')->paginate(10);
-
-        // $target_id = $request->input('m_id') ? $request->input('m_id') : null;
+        $movies = $user->movies()->orderBy('created_at', 'desc')->paginate(9);
 
         $target_movie = Movie::find($m_id);
         $target_id = $m_id;

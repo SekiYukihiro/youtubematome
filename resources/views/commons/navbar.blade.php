@@ -1,4 +1,4 @@
-<header class="mb-4">
+<header class="mb-5">
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
         <a class="navbar-brand" href="/">YouTubeまとめ<br>&ensp;×コミュニケーション</a>
 
@@ -12,6 +12,7 @@
                 @if(Auth::check())
                     <li>{!! link_to_route('logout.get','ログアウト',[],['class'=>'nav-link']) !!}</li>
                     <li>{!! link_to_route('recommend','オススメ動画登録する',['id'=>Auth::id()],['class'=>'nav-link']) !!}</li>
+                    <li>{!! link_to_route('users.show','マイページ',['id'=>Auth::id()],['class'=>'nav-link']) !!}</li>
                     <li>{!! link_to_route('channel','チャンネル設定',['id'=>Auth::id()],['class'=>'nav-link']) !!}</li>
                 @else
                     <li>{!! link_to_route('login','ログイン',[],['class'=>'nav-link']) !!}</li>

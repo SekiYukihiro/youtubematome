@@ -11,7 +11,7 @@ class PhotosController extends Controller
     public function storeIcon(Request $request)
     {
             $this->validate($request,[
-                    'photo' => 'required|file|image|mimes:jpeg,png,jpg,gif',
+                    'photo' => 'required|file|image|max:50000|mimes:jpeg,png,jpg,gif',
             ]);
 
 
@@ -27,7 +27,6 @@ class PhotosController extends Controller
 
 
             $user=\Auth::user();
-            // $user->icon_image_url = $request->photo->storeAs('public/icon_images/',\Auth::id() . '-200-200'.'.jpg');
             $user->icon_image_url = ('public/icon_images/'.\Auth::id() . '-200-200'.'.jpg');
 
             $user->save();
@@ -41,7 +40,7 @@ class PhotosController extends Controller
     public function storeTop(Request $request)
     {
             $this->validate($request,[
-                    'photo' => 'required|file|image|mimes:jpeg,png,jpg,gif',
+                    'photo' => 'required|file|image|max:50000|mimes:jpeg,png,jpg,gif',
             ]);
 
 
@@ -62,7 +61,6 @@ class PhotosController extends Controller
 
 
             $user=\Auth::user();
-            // $user->top_image_url = ('public/top_images/'.\Auth::id() . '-1000-200'.'.jpg');
             $user->top_image_url = ('public/top_images/'.\Auth::id() .'.jpg');
 
             $user->save();
@@ -79,7 +77,7 @@ class PhotosController extends Controller
     {
 
         $this->validate($request,[
-                'top_trim' => 'required|max:10|between:0,100',
+                'top_trim' => 'required|integer|between:0,100',
         ]);
 
         $user=\Auth::user();
@@ -122,8 +120,8 @@ class PhotosController extends Controller
 
               });
 
-  return $crop ? ['response' =>  true, 'img' => $str . '.jpg']
-               : ['response' => false];
+            return $crop ? ['response' =>  true, 'img' => $str . '.jpg']
+                        : ['response' => false];
 
             $user=\Auth::user();
 
