@@ -35,9 +35,10 @@ class UsersController extends Controller
         $favorite_word = $user->favorite_word;
 
         $api = "AIzaSyDRVUDMZb8B3v6qRfIIQxkYQ3TX-TO3xlw";
-            $get_api_url = "https://www.googleapis.com/youtube/v3/videos?id=&key=$api&part=snippet,contentDetails,statistics,status";
-            $json = @file_get_contents($get_api_url);
-            if($json){
+        $get_api_url = "https://www.googleapis.com/youtube/v3/videos?id=&key=$api&part=snippet,contentDetails,statistics,status";
+        $json = @file_get_contents($get_api_url);
+
+        if($json){
 
                 require_once (dirname(__FILE__) . '/autoload.php');
 
@@ -72,10 +73,9 @@ class UsersController extends Controller
                 exit;
                 }
 
-            }else{
+        }else{
                 $videos = "";
-            }
-
+        }
 
 
         $data=[
@@ -91,10 +91,10 @@ class UsersController extends Controller
         );
     }
 
+
     public function followings($id)
     {
         $user = User::find($id);
-        // $movies = Movie::orderBy('created_at', 'desc')->paginate(1);
         $movies = $user->feed_followings_movies()->orderBy('created_at', 'desc')->paginate(9);
 
         $followings = $user->followings()->paginate(9);
@@ -113,7 +113,6 @@ class UsersController extends Controller
     public function followers($id)
     {
         $user = User::find($id);
-        // $movies = Movie::orderBy('created_at', 'desc')->paginate(1);
         $movies = $user->feed_followers_movies()->orderBy('created_at', 'desc')->paginate(9);
 
         $followers = $user->followers()->paginate(9);

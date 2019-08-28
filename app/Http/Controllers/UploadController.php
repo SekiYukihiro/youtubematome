@@ -64,8 +64,6 @@ class UploadController extends Controller
         $movies = $user->movies()->where('upload_id',1)->orderBy('created_at', 'desc')->paginate(10);
 
         return view('upload',['user'=>$user,'movies'=>$movies,]);
-
-        // return $upload_movie->getVideoId();
     }
 
     /**

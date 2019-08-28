@@ -49,7 +49,7 @@
 
     @else
     <h5>※現在一時的な情報制限中につき、YouTubeへの動画投稿ができません</h5>
-
+    <h5 class="mb-5"><br></h5>
     @endif
 </section>
 
@@ -58,6 +58,7 @@
     <h2 class="mt-5">{{ $user->name }} 投稿動画</h2>
 
 @include('movies.movies_all', ['user'=>$user,'movies' => $movies])
+
 </section>
 
 @endsection

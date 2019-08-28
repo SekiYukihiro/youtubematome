@@ -1,4 +1,8 @@
 @media(max-width:768px){
+        .channel_follow{
+                display: block;
+        }
+
         .matome{
                 font-size:33px;
         }
@@ -62,6 +66,10 @@ footer{
         bottom:0;
         width: 100%;
         height: 50px;
+}
+
+.login_title{
+        width: 700px;
 }
 
 .semicolon{

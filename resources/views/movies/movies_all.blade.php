@@ -1,5 +1,5 @@
 <div class="row d-flex mt-5 text-center">
-    @foreach ($movies as $key => $movie)
+@foreach ($movies as $key => $movie)
 
         @if($loop->iteration % 3 == 1 && $loop->iteration != 1)
             @php
@@ -21,26 +21,34 @@
             @endphp
         @endif
 
-            <li class="col-lg-4 mb-5 list-unstyled">
-                <div class="wrapper text-left d-inline-block">
-                    <div class="movie">
-                            <div class="video-wrap movie">
-                                <iframe width="300" height="168.75" src="{{ 'https://www.youtube.com/embed/'.$movie->url }}?controls=1&loop=1&playlist={{ $movie->url }}" frameborder="0"  allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                            </div>
-                            <p class="video_title mb-0">
-                                    @if(isset($movie->title))
-                                        {!! nl2br(e($movie->title)) !!}
-                                    @elseif(isset($video_title))
-                                        {!! nl2br(e($video_title)) !!}
-                                    @else
-                                        ※動画が未登録　or　一時的な情報制限中
-                                    @endif
-                            </p>
+        <li class="col-lg-4 mb-5 list-unstyled">
+
+            <div class="wrapper text-left d-inline-block">
+
+                <div class="movie">
+
+                    <div class="video-wrap movie">
+                            <iframe width="300" height="168.75" src="{{ 'https://www.youtube.com/embed/'.$movie->url }}?controls=1&loop=1&playlist={{ $movie->url }}" frameborder="0"  allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     </div>
+
+                    <p class="video_title mb-0">
+                        @if(isset($movie->title))
+                            {!! nl2br(e($movie->title)) !!}
+                        @elseif(isset($video_title))
+                            {!! nl2br(e($video_title)) !!}
+                        @else
+                            ※動画が未登録です
+                        @endif
+                    </p>
+
                 </div>
-            </li>
+
+            </div>
+
+        </li>
 
     @endforeach
+
 </div>
 
 <div class="text-center mb-5">

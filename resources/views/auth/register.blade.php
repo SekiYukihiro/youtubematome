@@ -3,12 +3,21 @@
 @section('content')
 
     <div class="text-center">
+
         <h1 class="matome">YouTubeまとめ ×</h1>
         <h1 class="matome">コミュニケーション</h1>
+
         <img id="change" class="rounded img-fluid" src="storage/welcome_images/movie.jpg" style="width:700px; height:100px; object-fit:cover; object-position:0% 60%;">
+
     </div>
-        <h2 class="col-sm-11 offset-sm-2 mt-5">新規ユーザ登録</h2>
-    <p class="col-sm-8 offset-sm-2">ユーザ登録すると、<br>あなたのチャンネル作成 ／ 動画登録 ／ チャンネルのフォロー　等ができるようになります。</p>
+
+   <div class="text-center">
+        <h3 class="login_title text-left d-inline-block mt-5">新規ユーザー登録</h3>
+   </div>
+
+    <div class="text-center">
+        <p class="text-left d-inline-block">ログインすると、<br>あなたのチャンネル作成 ／ 動画登録 ／ <span class="channel_follow">チャンネルのフォロー 等が</span>できるようになります。</p>
+    </div>
 
     <div class="row mt-5 mb-5">
         <div class="col-sm-6 offset-sm-3">
@@ -38,6 +47,7 @@
             {!! Form::close() !!}
 
             <p class="mt-2">{!! link_to_route('login','登録済みの方はコチラ') !!}</p>
+
         </div>
     </div>
 
