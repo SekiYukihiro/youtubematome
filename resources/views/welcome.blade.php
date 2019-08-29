@@ -5,7 +5,7 @@
 
     <div class="center jumbotron bg-dark">
 
-        <img id="change" class="rounded img-fluid" src="Storage::disk('s3')->url('youtube.jpg')" style="width:1046px; height:200px; object-fit:cover; object-position:0% 33%;">
+        <img id="change" class="rounded img-fluid" src="{{ Storage::disk('s3')->url('youtube.jpg') }}" style="width:1046px; height:200px; object-fit:cover; object-position:0% 33%;">
         {{-- <img id="change" class="rounded img-fluid" src="storage/welcome_images/youtube.jpg" style="width:1046px; height:200px; object-fit:cover; object-position:0% 33%;"> --}}
 
         <div class="text-center text-white mt-5 pt-1">
