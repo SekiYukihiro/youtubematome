@@ -40,7 +40,7 @@ class UsersController extends Controller
 
         if($json){
 
-                require_once (dirname(__FILE__) . '/autoload.php');
+                require_once (dirname(__FILE__) . '/../../../vendor/autoload.php');
 
                 define("API_KEY","AIzaSyDRVUDMZb8B3v6qRfIIQxkYQ3TX-TO3xlw");
 
