@@ -15,17 +15,14 @@ class MoviesController extends Controller
 
         $users = User::orderBy('id','desc')->paginate(9);
 
+        $path = Storage::disk('s3')->url('youtube.jpg');
+
         $data = [
                 'users'=>$users,
+                'path'=>$path,
         ];
 
         return view('welcome', $data);
-    }
-
-    public function disp()
-    {
-        $path = Storage::disk('s3')->url('youtube.jpg');
-        return view('disp', compact('path'));
     }
 
     public function store(Request $request)
