@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Movie;
 use App\User;
 
-use Storage;
+use Illuminate\Support\Facades\Storage;
 
 class MoviesController extends Controller
 {
