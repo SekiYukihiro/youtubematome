@@ -22,6 +22,12 @@ class MoviesController extends Controller
         return view('welcome', $data);
     }
 
+    public function disp()
+    {
+        $path = Storage::disk('s3')->url('youtube.jpg');
+        return view('disp', compact('path'));
+    }
+
     public function store(Request $request)
     {
 
