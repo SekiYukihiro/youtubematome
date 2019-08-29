@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Movie;
 use App\User;
 
+use Storage;
+
 class MoviesController extends Controller
 {
     public function index()
