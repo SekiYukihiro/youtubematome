@@ -20,18 +20,8 @@ class PhotosController extends Controller
 
             $file=$params['photo'];
 
-            // formから送信されたimgファイルを読み込む
-            // $file = $request->file('post_img');
-            // 画像の拡張子を取得
-            $extension = $file->getClientOriginalExtension();
-            // 画像の名前を取得
-            $filename = \Auth::id();
-            // 画像をリサイズ
-            // $resize_img = \Image::make($file)->resize(200,200)->encode($extension);
             // s3のuploadsファイルに追加
             $path = Storage::disk('s3')->put('/icon_images',$file, 'public');
-            // 画像のURLを参照
-            $url = Storage::disk('s3')->url('icon_images/'.$filename);
 
         //     $image=\Image::make(file_get_contents($file->getRealPath()));
         //     $image
