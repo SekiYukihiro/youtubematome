@@ -29,7 +29,7 @@ class PhotosController extends Controller
             // 画像をリサイズ
             // $resize_img = \Image::make($file)->resize(200,200)->encode($extension);
             // s3のuploadsファイルに追加
-            $path = Storage::disk('s3')->put('/icon_images/',$file, 'public');
+            $path = Storage::disk('s3')->put('/icon_images',$file, 'public');
             // 画像のURLを参照
             $url = Storage::disk('s3')->url('icon_images/'.$filename);
 

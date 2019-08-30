@@ -100,7 +100,7 @@
 
                         <div class="ml-3 mt-5">
                                 @if(Auth::user()->icon_image_url)
-                                        <img class="rounded img-fluid" src="{{ Auth::user()->icon_image_url }}" width="100px" height="100px">
+                                        <img class="rounded img-fluid" src="{{ Storage::disk('s3')->url(Auth::user()->icon_image_url) }}" width="100px" height="100px">
                                 @else
                                         <img class="mr-2 rounded" src="{{ Gravatar::src($user->email, 100) }}" alt="">
                                 @endif
