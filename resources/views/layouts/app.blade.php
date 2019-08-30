@@ -8,7 +8,7 @@
 
         <title>YouTubeまとめ×コミュニケーション</title>
 
-        <link rel="icon" href="{{ secure_asset('/storage/welcome_images/favicon1.png') }}">
+        <link rel="icon" href="{{ Storage::disk('s3')->url('favicon.jpg') }}">
 
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
         <link rel="stylesheet" href="{{ secure_asset('/css/styles.css') }}">
