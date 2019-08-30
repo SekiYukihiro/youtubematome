@@ -57,7 +57,7 @@
     <div class="semicolon">”</div>
     <h2 class="mt-5">{{ $user->name }} 投稿動画</h2>
 
-@include('movies.movies_all', ['user'=>$user,'movies' => $movies])
+    @include('movies.movies_all', ['user'=>$user,'movies' => $movies])
 
 </section>
 

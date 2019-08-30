@@ -23,7 +23,9 @@
         <div class="text-right">
 
             @if(Auth::user()->icon_image_url)
-                <img class="rounded img-fluid" src="{{ Storage::url(Auth::user()->icon_image_url) }}" width="80px" height="80px">
+                <span width="80px" height="80px">
+                    <img class="rounded" src="{{ Storage::disk('s3')->url(Auth::user()->icon_image_url) }}" width="80px" height="80px">
+                </span>
             @else
                 <a href="{{ route('users.show',['id'=>Auth::id()]) }}"><img class="mr-2 rounded" src="{{ Gravatar::src(Auth::user()->email, 80) }}" alt=""></a>
             @endif

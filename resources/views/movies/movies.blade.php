@@ -43,7 +43,9 @@
                 <div class="name">
 
                     @if($user->icon_image_url)
-                        <img class="rounded img-fluid" src="{{ Storage::url($user->icon_image_url) }}" width="50px" height="50px">
+                        <span width="50px" height="50px">
+                            <img class="rounded" src="{{ Storage::disk('s3')->url($user->icon_image_url) }}" width="50px" height="50px">
+                        </span>
                     @else
                         <img class="rounded img-fluid" src="{{ Gravatar::src($user->email,50) }}" alt="">
                     @endif

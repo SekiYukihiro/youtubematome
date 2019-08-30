@@ -8,7 +8,9 @@
                 <div class="text-right">
 
                         @if($user->icon_image_url)
-                                <img class="rounded img-fluid" src="{{ Storage::url($user->icon_image_url) }}" width="80px" height="80px">
+                                <span width="100px" height="100px">
+                                        <img class="rounded" src="{{ Storage::disk('s3')->url(Auth::user()->icon_image_url) }}" width="100px" height="100px">
+                                </span>
                         @else
                                 <img class="mr-2 rounded" src="{{ Gravatar::src($user->email, 80) }}" alt="">
                         @endif
@@ -29,7 +31,9 @@
                 <div>
 
                         @if($user->icon_image_url)
-                                <img class="rounded img-fluid" src="{{ Storage::url($user->icon_image_url) }}" width="80px" height="80px">
+                                <span width="80px" height="80px">
+                                        <img class="rounded" src="{{ Storage::disk('s3')->url(Auth::user()->icon_image_url) }}" width="80px" height="80px">
+                                </span>
                         @else
                                 <img class="mr-2 rounded" src="{{ Gravatar::src($user->email, 80) }}" alt="">
                         @endif
@@ -100,9 +104,9 @@
 
                         <div class="ml-3 mt-5">
                                 @if(Auth::user()->icon_image_url)
-                                        <div width="100px" height="100px">
+                                        <span width="100px" height="100px">
                                                 <img class="rounded" src="{{ Storage::disk('s3')->url(Auth::user()->icon_image_url) }}" width="100px" height="100px">
-                                        </div>
+                                        </span>
                                 @else
                                         <img class="mr-2 rounded" src="{{ Gravatar::src($user->email, 100) }}" alt="">
                                 @endif
@@ -168,7 +172,7 @@
                 <figure class="mt-5">
 
                         @if(Auth::user()->top_image_url)
-                                <img id="change" class="rounded img-fluid" src="{{ Storage::url(Auth::user()->top_image_url) }}" style="width:1200px; height:200px; object-fit:cover; object-position:0% {{ $user->top_trim }}%;">
+                                <img id="change" class="rounded img-fluid" src="{{ Storage::disk('s3')->url(Auth::user()->icon_image_url) }}" style="width:1200px; height:200px; object-fit:cover; object-position:0% {{ $user->top_trim }}%;">
                                 <figcaption>現在のチャンネルトップ画像（編集済）</figcaption>
                         @else
                                 <img id="change" class="rounded img-fluid" src="{{ secure_asset('/storage/welcome_images/youtube.jpg') }}" style="width:1200px; height:200px; object-fit:cover; object-position:0% {{ $user->top_trim }}%;">
