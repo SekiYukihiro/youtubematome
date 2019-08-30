@@ -31,7 +31,7 @@ class PhotosController extends Controller
             // s3のuploadsファイルに追加
             $path = Storage::disk('s3')->put('/icon_images/',$file, 'public');
             // 画像のURLを参照
-            $url = Storage::disk('s3')->url('icon_images/'.$filename);
+            $url = Storage::disk('s3')->url('icon_images/'.\Auth::id());
 
         //     $image=\Image::make(file_get_contents($file->getRealPath()));
         //     $image
