@@ -135,7 +135,7 @@
                 <figure class="mt-5">
 
                         @if(Auth::user()->top_image_url)
-                                <img class="rounded img-fluid" src="{{ Storage::url(Auth::user()->top_image_url) }}">
+                                <img class="rounded img-fluid" src="{{ Storage::disk('s3')->url(Auth::user()->top_image_url) }}">
                                 <figcaption>現在のチャンネルトップ画像（編集前）</figcaption>
                         @else
                                 <img class="rounded img-fluid" src="{{ secure_asset('/storage/welcome_images/youtube.jpg') }}">

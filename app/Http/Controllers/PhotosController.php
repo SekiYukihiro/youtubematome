@@ -23,15 +23,8 @@ class PhotosController extends Controller
             // s3のuploadsファイルに追加
             $path = Storage::disk('s3')->put('/icon_images',$file, 'public');
 
-        //     $image=\Image::make(file_get_contents($file->getRealPath()));
-        //     $image
-        //         ->resize(200,200)
-        //         ->save(storage_path().'/app/public/icon_images/'. \Auth::id() . '-200-200'.'.jpg');
-
-
             $user=\Auth::user();
             $user->icon_image_url = $path;
-        //     $user->icon_image_url = ('public/icon_images/'.\Auth::id() . '-200-200'.'.jpg');
 
             $user->save();
 
@@ -54,20 +47,29 @@ class PhotosController extends Controller
 
             $file1=$params1['photo'];
 
-            $image1=\Image::make(file_get_contents($file1->getRealPath()));
-            $image1
-                ->resize(1000,200)
-                ->save(storage_path().'/app/public/top_images/'. \Auth::id() . '-1000-200'.'.jpg');
-
-            $image2=\Image::make(file_get_contents($file1->getRealPath()));
-            $image2
-                ->save(storage_path().'/app/public/top_images/'. \Auth::id() .'.jpg');
-
+            // s3のuploadsファイルに追加
+            $path = Storage::disk('s3')->put('/top_images',$file1, 'public');
 
             $user=\Auth::user();
-            $user->top_image_url = ('public/top_images/'.\Auth::id() .'.jpg');
+            $user->top_image_url = $path;
 
             $user->save();
+
+
+        //     $image1=\Image::make(file_get_contents($file1->getRealPath()));
+        //     $image1
+        //         ->resize(1000,200)
+        //         ->save(storage_path().'/app/public/top_images/'. \Auth::id() . '-1000-200'.'.jpg');
+
+        //     $image2=\Image::make(file_get_contents($file1->getRealPath()));
+        //     $image2
+        //         ->save(storage_path().'/app/public/top_images/'. \Auth::id() .'.jpg');
+
+
+        //     $user=\Auth::user();
+        //     $user->top_image_url = ('public/top_images/'.\Auth::id() .'.jpg');
+
+        //     $user->save();
 
 
             return view('setting.channel',[
