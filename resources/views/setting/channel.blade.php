@@ -172,7 +172,7 @@
                 <figure class="mt-5">
 
                         @if(Auth::user()->top_image_url)
-                                <img id="change" class="rounded img-fluid" src="{{ Storage::disk('s3')->url(Auth::user()->icon_image_url) }}" style="width:1200px; height:200px; object-fit:cover; object-position:0% {{ $user->top_trim }}%;">
+                                <img id="change" class="rounded img-fluid" src="{{ Storage::disk('s3')->url(Auth::user()->top_image_url) }}" style="width:1200px; height:200px; object-fit:cover; object-position:0% {{ $user->top_trim }}%;">
                                 <figcaption>現在のチャンネルトップ画像（編集済）</figcaption>
                         @else
                                 <img id="change" class="rounded img-fluid" src="{{ secure_asset('/storage/welcome_images/youtube.jpg') }}" style="width:1200px; height:200px; object-fit:cover; object-position:0% {{ $user->top_trim }}%;">

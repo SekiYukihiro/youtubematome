@@ -7,7 +7,7 @@
         <h1 class="matome">YouTubeまとめ ×</h1>
         <h1 class="matome">コミュニケーション</h1>
 
-        <img id="change" class="rounded img-fluid" src="storage/welcome_images/movie.jpg" style="width:700px; height:100px; object-fit:cover; object-position:0% 60%;">
+        <img id="change" class="rounded img-fluid" src="{{ Storage::disk('s3')->url('movie.jpg') }}" style="width:700px; height:100px; object-fit:cover; object-position:0% 60%;">
 
     </div>
 
