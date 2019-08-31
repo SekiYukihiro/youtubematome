@@ -10,8 +10,8 @@
 
                 @if($user->icon_image_url)
                     <span width="80px" height="80px">
-                        <span class="rounded" src="{{ Storage::disk('s3')->url($user->icon_image_url) }}" width="80px" height="80px">
-                    </div>
+                        <img class="rounded" src="{{ Storage::disk('s3')->url($user->icon_image_url) }}" width="80px" height="80px">
+                    </span>
                 @else
                     <img class="mr-2 rounded" src="{{ Gravatar::src($user->email, 80) }}" alt="">
                 @endif
