@@ -56,7 +56,8 @@ class UploadController extends Controller
         $user = \Auth::user();
         $movie = new Movie;
         $movie->user_id = \Auth::user()->id;
-        $movie->url = $upload_movie->videoId;
+        $movie->url = $upload_movie->getVideoId();
+        // $movie->url = $upload_movie->videoId;
         $movie->upload_id = "1";
 
         $movie->save();
