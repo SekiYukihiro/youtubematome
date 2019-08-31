@@ -142,7 +142,7 @@
                                 <img class="rounded img-fluid" src="{{ Storage::disk('s3')->url(Auth::user()->top_image_url) }}">
                                 <figcaption>現在のチャンネルトップ画像（編集前）</figcaption>
                         @else
-                                <img class="rounded img-fluid" src="{{ secure_asset('/storage/welcome_images/youtube.jpg') }}">
+                                <img class="rounded img-fluid" src="{{ Storage::disk('s3')->url('youtube.jpg') }}">
                                 <figcaption>※これはサンプル画像です お好きな画像を選択して下さい</figcaption>
                         @endif
 
@@ -175,7 +175,7 @@
                                 <img id="change" class="rounded img-fluid" src="{{ Storage::disk('s3')->url(Auth::user()->top_image_url) }}" style="width:1200px; height:200px; object-fit:cover; object-position:0% {{ $user->top_trim }}%;">
                                 <figcaption>現在のチャンネルトップ画像（編集済）</figcaption>
                         @else
-                                <img id="change" class="rounded img-fluid" src="{{ secure_asset('/storage/welcome_images/youtube.jpg') }}" style="width:1200px; height:200px; object-fit:cover; object-position:0% {{ $user->top_trim }}%;">
+                                <img id="change" class="rounded img-fluid" src="{{ Storage::disk('s3')->url('youtube.jpg') }}" style="width:1200px; height:200px; object-fit:cover; object-position:0% {{ $user->top_trim }}%;">
                                 <figcaption>※これはサンプル画像です お好きな画像を選択して下さい</figcaption>
                         @endif
 
