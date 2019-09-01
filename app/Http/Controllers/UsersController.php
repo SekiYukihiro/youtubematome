@@ -10,6 +10,8 @@ use App\Movie;
 use Google_Client;
 use Google_Service_YouTube;
 
+use Illuminate\Support\Facades\Storage;
+
 class UsersController extends Controller
 {
     public function index()
@@ -201,10 +203,12 @@ class UsersController extends Controller
 
         $users = User::orderBy('id','desc')->paginate(9);
         $movies = Movie::orderBy('created_at', 'desc')->paginate(9);
+        $path = Storage::disk('s3')->url('youtube.jpg');
 
         $data = [
                 'movies' => $movies,
                 'users'=>$users,
+                'path'=>$path,
         ];
 
         return view('welcome', $data);
