@@ -77,7 +77,11 @@
                 <div class="semicolon">”</div>
                 <h2 class="mt-5">お気に入りワード設定</h2>
 
-                <h4 class="text-center mt-5">お気に入りワード<span class="favorite_word_channel pl-3">"{{ Auth::user()->favorite_word }}"</span></h4>
+                @if(Auth::user()->favorite_word)
+                        <h4 class="text-center mt-5">お気に入りワード<span class="favorite_word_channel pl-3">"{{ Auth::user()->favorite_word }}"</span></h4>
+                @else
+                        <h4 class="text-center mt-5">お気に入りワード<span class="favorite_word_channel pl-3">"未登録です"</span></h4>
+                @endif
 
                         {!! Form::open(['route'=>'word.store']) !!}
 

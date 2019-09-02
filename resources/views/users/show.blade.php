@@ -10,7 +10,11 @@
             @include('movies.movies_all', ['user'=>$user,'movies' => $movies])
 
 
-<h4 class="okiniiri mb-5">お気に入りワード<span class="favorite_word pl-3">"{{ $favorite_word }}"</span></h4>
+@if($favorite_word)
+    <h4 class="okiniiri mb-5">お気に入りワード<span class="favorite_word pl-3">"{{ $favorite_word }}"</span></h4>
+@else
+    <h4 class="okiniiri mb-5">お気に入りワード<span class="favorite_word pl-3">"未登録です"</span></h4>
+@endif
 
 @if($videos)
 
