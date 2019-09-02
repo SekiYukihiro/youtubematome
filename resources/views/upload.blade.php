@@ -3,7 +3,7 @@
 @section('content')
 
 @php
-            $api = "AIzaSyDRVUDMZb8B3v6qRfIIQxkYQ3TX-TO3xlw";
+            $api = "AIzaSyD31kfUrBfnywxsspEee3_PGtQna5jNGOw";
             $get_api_url = "https://www.googleapis.com/youtube/v3/videos?id=&key=$api&part=snippet,contentDetails,statistics,status";
             $json = @file_get_contents($get_api_url);
 @endphp
@@ -30,6 +30,10 @@
     <h2 class="mt-5 mb-5">自分の動画をYouTubeに投稿して登録する</h2>
 
     @if($json)
+
+    <h5 class="mb-5">※当サービスの利用が増えるとGoogleの クォート（通信）制限 により、<br>
+    ※動画投稿機能が利用できない場合がございます。ご了承下さい。</h5>
+
     <form action="{{ url('upload') }}" method="post" enctype="multipart/form-data" files="true">
         <div class="form-group">
             <label class="d-block" for="exampleInputVideo">投稿したい動画を選択</label>

@@ -84,7 +84,7 @@
                     @if($target_url)
 
                         @php
-                            $api = "AIzaSyDRVUDMZb8B3v6qRfIIQxkYQ3TX-TO3xlw";
+                            $api = "AIzaSyD31kfUrBfnywxsspEee3_PGtQna5jNGOw";
                             $get_api_url = "https://www.googleapis.com/youtube/v3/videos?id=$target_url&key=$api&part=snippet,contentDetails,statistics,status";
                             $json = @file_get_contents($get_api_url);
 
