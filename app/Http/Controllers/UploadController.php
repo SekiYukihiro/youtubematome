@@ -45,7 +45,7 @@ class UploadController extends Controller
                     'video' => 'required|file|mimes:mp4,qt,x-ms-wmv,mpeg,x-msvideo',
                     'title' => 'required|max:24',
                     'description' => 'required|max:191',
-            ]);
+        ]);
 
         $upload_movie = Youtube::upload($request->file('video')->getPathName(),[
             'title' => $request->title,
