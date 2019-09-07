@@ -15,6 +15,26 @@ class UploadController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function pre()
+    {
+        return view('pre_upload');
+    }
+
+    public function auth()
+    {
+        // return Socialite::driver($provider)->redirect();
+        return redirect ('/youtube/auth');
+    }
+
+    public function authGoogleCallback()
+    {
+        // $googleUser = Socialite::driver('google')->user();
+
+        return view('upload');
+        // return redirect()->route('upload');
+    }
+
     public function index()
     {
         $user=\Auth::user();

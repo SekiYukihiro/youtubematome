@@ -77,7 +77,7 @@
         </div>
 
         <h2 class="link text-center mt-5">
-            <a href="{{ route('upload.get')}}">自分の動画を投稿する</a>
+            <a href="{{ route('pre')}}">自分の動画を投稿する</a>
         </h2>
 
 </section>

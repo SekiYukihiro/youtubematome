@@ -54,7 +54,10 @@ Route::group(['middleware'=>'auth'],function(){
     Route::post('topTrimming','PhotosController@topTrimming')->name('topTorimming');
     Route::post('topTrim','PhotosController@topTrim')->name('topTrim');
 
-    Route::get('upload','UploadController@index')->name('upload.get');
+    Route::get('pre','UploadController@pre')->name('pre');
+    Route::get('auth','UploadController@auth')->name('auth');
+    Route::get('/auth/callback/google', 'UploadController@authGoogleCallback');
+    Route::get('upload','UploadController@index')->name('upload');
     Route::post('upload','UploadController@store')->name('upload.post');
 
     Route::group(['prefix'=>'recommend'],function(){
