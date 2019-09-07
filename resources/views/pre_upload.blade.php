@@ -38,7 +38,7 @@
         <div class="col-sm-6 offset-sm-3">
 
                 <div class="register_button">
-                    <a href="http://72bb38464d5149d1a83c1b4c5e3d4176.vfs.cloud9.us-east-1.amazonaws.com/upload" class="button btn btn-primary mb-5">Google認証してアップロードへ</a>
+                    <a href="{{ route('upload')}}" class="button btn btn-primary mb-5">Google認証してアップロードへ</a>
                     {{--{!! link_to_route('auth','Google認証してアップロードへ',[],['class'=>'button btn btn-primary mb-5']) !!}--}}
                 </div>
 
