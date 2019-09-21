@@ -95,4 +95,60 @@ class User extends Authenticatable
         return $this->followings()->where('follow_id', $userId)->exists();
     }
 
+    public function users_access_tokens()
+    {
+        return $this->hasMany(UserAccessToken::class);
+    }
+
+    public function favorites()
+    {
+        return $this->belongsToMany(Movie::class, 'favorites', 'user_id', 'movie_id')->withTimestamps();
+    }
+
+    public function passive_favorites()
+    {
+        return $this->belongsToMany(Movie::class, 'favorites', 'movie_id', 'user_id')->withTimestamps();
+    }
+
+    public function favorite($movieId)
+    {
+        $exist = $this->is_favorite($movieId);
+
+        if($exist){
+            return false;
+        }else{
+            $this->favorites()->attach($movieId);
+            return true;
+        }
+    }
+
+    public function unfavorite($movieId)
+    {
+        $exist = $this->is_favorite($movieId);
+
+        if($exist){
+            $this->favorites()->detach($movieId);
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public function is_favorite($movieId)
+    {
+        return $this->favorites()->where('movie_id',$movieId)->exists();
+    }
+
+    public function feed_favorites()
+    {
+        $favorite_movie_ids = $this->favorites()->pluck('movies.id')->toArray();
+        return Movie::whereIn('id',$favorite_movie_ids);
+    }
+
+    public function feed_passive_favorites()
+    {
+        $favorite_movie_ids = $this->favorites()->pluck('movies.id')->toArray();
+        return Movie::whereIn('id',$favorite_movie_ids);
+    }
+
 }

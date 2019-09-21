@@ -79,7 +79,6 @@ class UsersController extends Controller
                 $videos = "";
         }
 
-
         $data=[
             'user'=>$user,
             'movies' => $movies,

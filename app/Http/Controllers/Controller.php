@@ -23,4 +23,13 @@ class Controller extends BaseController
                 'count_followers'=>$count_followers,
                 ];
     }
+
+    public function counts_m($movie)
+    {
+            $count_favorite_users = $movie->favorite_users()->count();
+
+            return[
+                'count_favorite_users'=>$count_favorite_users,
+                ];
+    }
 }

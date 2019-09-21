@@ -30,6 +30,18 @@
 
             <div class="wrapper text-left d-inline-block">
 
+                <div class="name">
+
+                    @php
+                        $count_favorite_users = $movie->favorite_users()->count();
+                    @endphp
+
+                    <div class="text-right mb-2">いいね！
+                        <span class="badge badge-pill badge-success">{{ $count_favorite_users }}</span>
+                    </div>
+
+                </div>
+
                 <div class="movie">
 
                     <div class="video-wrap movie">
@@ -54,7 +66,9 @@
                     </p>
 
                 </div>
-
+                        @if(Auth::check())
+                            @include('movie_favorite.favorite_button',['user'=>$user])
+                        @endif
             </div>
 
         </li>

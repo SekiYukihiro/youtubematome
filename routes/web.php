@@ -33,6 +33,10 @@ Route::group(['middleware'=>'auth'],function(){
        Route::post('follow','UserFollowController@store')->name('user.follow');
        Route::delete('unfollow','UserFollowController@destroy')->name('user.unfollow');
     });
+    Route::group(['prefix'=>'movies/{id}'],function(){
+       Route::post('favorite','FavoriteController@store')->name('favorites.favorite');
+       Route::delete('unfavorite','FavoriteController@destroy')->name('favorites.unfavorite');
+    });
 });
 
 Route::group(['prefix'=>'recommend'],function(){

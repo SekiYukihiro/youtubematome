@@ -8,7 +8,16 @@
     @foreach ($users as $key => $user)
 
         @php
+
+            $total=0;
+            $movies=$user->movies;
+
+            foreach ($movies as $key => $movie){
+                $total += $movie->favorite_users()->count();
+            }
+
             $movie=$user->movies->last();
+
         @endphp
 
         @if($loop->iteration % 3 == 1 && $loop->iteration != 1)
@@ -41,6 +50,9 @@
             <div class="wrapper text-left d-inline-block">
 
                 <div class="name">
+                    <div class="text-right">
+                        <span class="badge badge-pill badge-success">{{ $total }} いいね!</span>
+                    </div>
 
                     @if($user->icon_image_url)
                         <span width="50px" height="50px">
